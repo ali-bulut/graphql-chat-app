@@ -26,6 +26,14 @@ const httpLink = ApolloLink.from([
 const wsLink = new WebSocketLink({
   uri: wsUrl,
   options: {
+    // we can use connectionParams option to pass extra values to the server when
+    // establishing a GraphQL WebSocket connection.
+    // connectionParams can be either an object or a function returning an object.
+    // using a function is useful if the values in the object may change over time
+    // and we want to use latest values available when the connection starts.
+    connectionParams: () => ({
+      accessToken: getAccessToken(),
+    }),
     lazy: true,
     reconnect: true,
   },
