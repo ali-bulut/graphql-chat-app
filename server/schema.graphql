@@ -6,9 +6,14 @@ type Mutation {
   addMessage(input: MessageInput!): Message
 }
 
+# works with websockets
+type Subscription {
+  messageAdded: Message
+}
+
 type Message {
   id: ID!
-  from: String 
+  from: String
   text: String
 }
 
